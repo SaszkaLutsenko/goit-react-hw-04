@@ -1,7 +1,7 @@
 import ImageCard from "../ImageCard/ImageCard";
-import style from "./ImageGalery.module.css"
+import style from "./ImageGallery.module.css"
 
-const ImageGalery = ({ images, openModal }) => {
+const ImageGallery = ({ images, openModal }) => {
     return (
         <ul className={style.list}>
             {images.map( image =>(
@@ -13,4 +13,4 @@ const ImageGalery = ({ images, openModal }) => {
     );
 };
 
-export default ImageGalery;
+export default ImageGallery;
