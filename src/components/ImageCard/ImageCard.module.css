@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 4px solid gray;
+  border: none;
   overflow: hidden;
   border-radius: 10px;
 }
