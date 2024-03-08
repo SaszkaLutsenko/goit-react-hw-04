@@ -20,30 +20,14 @@ const customStyles = {
 const ImageModal = ({
   closeModal,
   modalIsOpen,
-  modal: { user, likes, description, alt_description, imgUrl },
+  modal: { alt_description, imgUrl },
 }) => {
   return (
     <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
       <div className={style.wrapper}>
         <img className={style.image} src={imgUrl} alt={alt_description} />
       </div>
-      <div className={style.thumb}>
-        <div className={style.user}>
-          <img
-            className={c.avatar}
-            src={user?.profile_image.small}
-            alt={alt_description ?? 'Unrecognized image'}
-          />
-          <span>@{user?.username}</span>
-        </div>
-        <div className={style.likes}>
-          <BiSolidLike size={20} />
-          <span>{likes}</span>
-        </div>
-      </div>
-      <div>
-        <p>{description}</p>
-      </div>
+    
     </Modal>
   );
 };

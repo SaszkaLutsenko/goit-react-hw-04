@@ -20,15 +20,16 @@ const SearchBar = ({ onSubmit }) => {
     <header className={style.header}>
       <form onSubmit={handleSubmit} className={style.form}>
         <div className={style.container}>
-          <button type="submit"><MdImageSearch size={20} /></button>
+         
           <label>
             <input
               name="searchQuery"
               type="text"
               autoComplete="off"
-              placeholder="what do you want to see?"
+              placeholder="Search images and photos"
             />
           </label>
+          <button type="submit"><MdImageSearch size={20} /></button>
         </div>
       </form>
       <Toaster />

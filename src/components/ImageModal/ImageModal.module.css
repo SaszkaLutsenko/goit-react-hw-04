@@ -14,26 +14,7 @@
   
 }
 
-.thumb {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 25px;
-}
-
 .image {
   height: 500px;
 }
 
-.user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-
-.likes {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
