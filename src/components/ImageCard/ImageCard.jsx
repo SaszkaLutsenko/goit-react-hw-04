@@ -1,41 +1,20 @@
-import css from './ImageCard.module.css';
+import c from './ImageCard.module.css';
 
-import { FaRegGrinHearts, FaRegUser } from 'react-icons/fa';
-
-export default function ImageCard({
-  image: {
-    description,
-    urls,
-    likes,
-    user: { name },
-  },
-  onOpenModal,
-}) {
+const ImageCard = ({
+  image: { alt_description, urls, user, likes, description, color },
+  openModal,
+}) => {
   return (
-    <div className={css.card}>
+    <div className={c.thumb} style={{ backgroundColor: color }}>
       <img
-        className={css.image}
         onClick={() =>
-          onOpenModal({
-            imgRegular: urls.regular,
-            description,
-            likes,
-            name,
-          })
+          openModal({ alt_description, imgUrl: urls.regular, user, likes, description })
         }
         src={urls.small}
-        alt={description}
+        alt={alt_description ?? 'Unrecognized image'}
       />
-      <div className={css.container}>
-        <div className={css.info}>
-          <FaRegUser className={css.icon} />
-          <p className={css.description}>{name}</p>
-        </div>
-        <div className={css.info}>
-          <FaRegGrinHearts className={css.icon} />
-          <p className={css.description}>{likes}</p>
-        </div>
-      </div>
     </div>
   );
-}
+};
+
+export default ImageCard;

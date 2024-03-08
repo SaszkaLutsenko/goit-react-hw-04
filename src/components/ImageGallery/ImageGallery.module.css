@@ -1,9 +1,17 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  
-    margin-bottom: 20px;
-  }
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--td) var(--ttf);
+}
+.item:hover {
+  transform: scale(1.05);
+}

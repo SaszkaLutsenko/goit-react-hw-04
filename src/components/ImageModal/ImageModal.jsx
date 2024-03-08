@@ -1,48 +1,51 @@
-import css from './ImageModal.module.css';
-
 import Modal from 'react-modal';
-import { FaRegGrinHearts, FaRegUser } from 'react-icons/fa';
+import { IoMdHeartEmpty } from 'react-icons/io';
+import c from './ImageModal.module.css';
 
-export default function ImageModal({
-  value: { imgRegular, description, likes, name },
+Modal.setAppElement('#root');
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    border: 'none',
+    padding: 32,
+  },
+};
+
+const ImageModal = ({
+  closeModal,
   modalIsOpen,
-  onCloseModal,
-}) {
-  const customStyles = {
-    content: {
-      maxWidth: '800px',
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: '#fff',
-    },
-    overlay: {
-      backgroundColor: '#151516db',
-    },
-  };
-
-  Modal.setAppElement('#root');
-
+  modal: { user, likes, description, alt_description, imgUrl },
+}) => {
   return (
-    <Modal
-      isOpen={modalIsOpen}
-      onRequestClose={onCloseModal}
-      style={customStyles}
-    >
-      <img src={imgRegular} alt={description} />
-      <div className={css.container}>
-        <div className={css.info}>
-          <FaRegUser className={css.icon} />
-          <p className={css.description}>{name}</p>
+    <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
+      <div className={c.imageWrapper}>
+        <img className={c.image} src={imgUrl} alt={alt_description} />
+      </div>
+      <div className={c.thumbInfo}>
+        <div className={c.user}>
+          <img
+            className={c.avatar}
+            src={user?.profile_image.small}
+            alt={alt_description ?? 'Unrecognized image'}
+          />
+          <span>@{user?.username}</span>
         </div>
-        <div className={css.info}>
-          <FaRegGrinHearts className={css.icon} />
-          <p className={css.description}>{likes}</p>
+        <div className={c.likes}>
+          <IoMdHeartEmpty size={20} />
+          <span>{likes}</span>
         </div>
+      </div>
+      <div>
+        <p>{description}</p>
       </div>
     </Modal>
   );
-}
+};
+
+export default ImageModal;
