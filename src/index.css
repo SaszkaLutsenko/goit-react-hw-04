@@ -1,18 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
-
 :root {
-  font-family: 'Roboto Slab', serif;
-  font-size: 16px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #111;
-  background-color: #d7d7d7;
 
-  --white: #fff;
-  --black: #000;
-
-  --td: 250ms;
-  --ttf: ease;
+  color: #242424;
+  background-image:  #d8f8db ;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,36 +12,46 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
+/* Reset styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   margin: 0;
-  padding: 0;
+}
+
+p:last-child {
+  margin-bottom: 0;
 }
 
 ul {
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-button {
-  border: none;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
+a {
+  color: currentColor;
+  text-decoration: none;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+button {
+  cursor: pointer;
 }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
-#root {
-  margin: 0 auto;
-  padding: 4rem;
-  text-align: center;
+input,
+textarea,
+fieldset {
+  padding: 0;
+  resize: none;
 }

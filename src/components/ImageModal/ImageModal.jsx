@@ -1,49 +1,48 @@
-import Modal from "react-modal";
-import { IoMdHeartEmpty } from "react-icons/io";
-import styles from "./ImageModal.module.css";
+import css from './ImageModal.module.css';
 
-Modal.setAppElement("#root");
+import Modal from 'react-modal';
+import { FaRegGrinHearts, FaRegUser } from 'react-icons/fa';
 
-const customStyles = {
+export default function ImageModal({
+  value: { imgRegular, description, likes, name },
+  modalIsOpen,
+  onCloseModal,
+}) {
+  const customStyles = {
     content: {
-        top: "50%",
-        left: "50%",
-        right: "auto",
-        bottom: "auto",
-        marginRight: "-50%",
-        transform: "translate(-50%, -50%)",
-        border: "none",
-        padding: 32
-    }
-};
+      maxWidth: '800px',
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: '#fff',
+    },
+    overlay: {
+      backgroundColor: '#151516db',
+    },
+  };
 
-const ImageModal = ({
-    closeModal,
-    modalIsOpen,
-    modal: {user,likes, description, alt_description, imgUrl}
-}) => {
-    return(
-        <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
-            <div className={styles.imageWrapper}>
-                <img className={styles.image} src={imgUrl} alt={alt_description} />
-            </div>
-            <div className={styles.trumbI}>
-                <div className={styles.user}>
-                    <img className={styles.avatar}
-                     src={user?.profile_image.small} 
-                     alt={alt_description ?? "Unrecognized image"} />
-                     <span>@{user?.username}</span>
-                </div>
-                <div className={styles.likes}>
-                    <IoMdHeartEmpty size={20} />
-                    <span>{likes}</span>
-                </div>
-            </div>
-            <div>
-                <p>{description}</p>
-            </div>
-        </Modal>
-    );
-};
+  Modal.setAppElement('#root');
 
-export default ImageModal;
+  return (
+    <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={onCloseModal}
+      style={customStyles}
+    >
+      <img src={imgRegular} alt={description} />
+      <div className={css.container}>
+        <div className={css.info}>
+          <FaRegUser className={css.icon} />
+          <p className={css.description}>{name}</p>
+        </div>
+        <div className={css.info}>
+          <FaRegGrinHearts className={css.icon} />
+          <p className={css.description}>{likes}</p>
+        </div>
+      </div>
+    </Modal>
+  );
+}
