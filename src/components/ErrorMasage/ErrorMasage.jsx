@@ -1,4 +1,9 @@
-import c from './ErrorMessage.module.css';
+import style from './ErrorMasage.module.css';
 
-const ErrorMessage = ({ children }) => <div className={c.error}>{children}</div>;
+const ErrorMessage = ({ children }) => {
+    return(
+<div className={style.error}>{children}</div>
+    )
+};
+
 export default ErrorMessage;

@@ -1,4 +1,4 @@
 .error {
-    color: var(--black);
+    color: red;
     font-size: 18px;
   }

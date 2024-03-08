@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { fetchImages } from '../../images-api';
+import { fetchImages } from '../../image-api';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import SearchBar from '../SearchBar/SearchBar';
 import Loader from '../Loader/Loader';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import ErrorMessage from '../ErrorMasage/ErrorMasage';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
 
