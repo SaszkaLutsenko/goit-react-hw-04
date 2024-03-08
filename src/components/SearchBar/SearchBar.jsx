@@ -19,7 +19,7 @@ const SearchBar = ({ onSubmit }) => {
   return (
     <header className={style.header}>
       <form onSubmit={handleSubmit} className={style.form}>
-        <div className={style.searchBox}>
+        <div className={style.container}>
           <button type="submit"><MdImageSearch size={20} /></button>
           <label>
             <input
@@ -27,7 +27,7 @@ const SearchBar = ({ onSubmit }) => {
               type="text"
               autoFocus
               autoComplete="off"
-              placeholder="Search images and photos"
+              placeholder="what do you want to see?"
             />
           </label>
         </div>
