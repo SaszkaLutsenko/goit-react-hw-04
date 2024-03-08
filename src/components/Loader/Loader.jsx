@@ -1,15 +1,19 @@
-import { Hourglass } from 'react-loader-spinner';
-
+import { Audio } from 'react-loader-spinner'
 const Loader = () => (
-  <Hourglass
-    visible={true}
-    height="40"
-    width="40"
-    ariaLabel="hourglass-loading"
-    wrapperStyle={{}}
-    wrapperClass=""
-    colors={['#306cce', '#72a1ed']}
-  />
+
+  <Audio
+  height="80"
+  width="80"
+  radius="9"
+  color="green"
+  ariaLabel="loading"
+  wrapperStyle
+  wrapperClass
+/>
+  
 );
+
+
+
 
 export default Loader;

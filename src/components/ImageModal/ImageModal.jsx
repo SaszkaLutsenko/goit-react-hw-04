@@ -19,7 +19,7 @@ const customStyles = {
 
 const ImageModal = ({modal: { user, likes, description, alt_description, imgUrl }, closeModal, modalIsOpen}) => {
   return (
-    <Modal style={customStyles} isOpen={modalIsOpen} onRequestClose={closeModal} >
+    <Modal className={style.modal} isOpen={modalIsOpen} onRequestClose={closeModal} >
       <div className={style.wrapper}>
         <img className={style.image} src={imgUrl} alt={alt_description} />
       </div>
