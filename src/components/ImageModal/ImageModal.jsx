@@ -1,5 +1,4 @@
 import Modal from 'react-modal';
-import { BiSolidLike } from "react-icons/bi";
 import style from './ImageModal.module.css';
 
 Modal.setAppElement('#root');
