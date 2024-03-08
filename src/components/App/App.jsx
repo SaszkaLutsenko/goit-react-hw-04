@@ -24,12 +24,10 @@ const App = () => {
       try {
         setIsLoading(true);
         const { results, total_pages } = await fetchImages({ query, page });
-
         if (!results.length) {
           setIsEmpty(true);
           return;
         }
-
         setImages(prev => [...prev, ...results]);
         setIsVisible(page < total_pages);
       } catch (error) {
@@ -68,23 +66,17 @@ const App = () => {
   return (
     <div>
       <SearchBar onSubmit={handleSearch} />
-
       {isError && (
         <ErrorMessage>Try reloading the page</ErrorMessage>
       )}
-
       {images.length !== 0 && <ImageGallery images={images} openModal={openModal} />}
-
       {isEmpty && query && <ErrorMessage>I don't understand the request</ErrorMessage>}
-
       {isVisible && (
         <LoadMoreBtn disabled={isLoading} onClick={handleLoadMore}>
           {isLoading ? 'Loading' : 'Load more'}
         </LoadMoreBtn>
       )}
-
       {isLoading && <Loader />}
-
       <ImageModal closeModal={closeModal} modalIsOpen={showModal} modal={selectedImageInfo} />
     </div>
   );
