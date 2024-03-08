@@ -1,11 +1,12 @@
+import style from './ImageGallery.module.css';
 import ImageCard from '../ImageCard/ImageCard';
-import c from './ImageGallery.module.css';
+
 
 const ImageGallery = ({ images, openModal }) => {
   return (
-    <ul className={c.list}>
+    <ul className={style.list}>
       {images.map(image => (
-        <li key={image.id} className={c.item}>
+        <li className={style.item} key={image.id} >
           <ImageCard image={image} openModal={openModal} />
         </li>
       ))}
