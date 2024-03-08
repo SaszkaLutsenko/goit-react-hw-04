@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 import { IoMdHeartEmpty } from 'react-icons/io';
-import c from './ImageModal.module.css';
+import style from './ImageModal.module.css';
 
 Modal.setAppElement('#root');
 
@@ -24,19 +24,19 @@ const ImageModal = ({
 }) => {
   return (
     <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
-      <div className={c.imageWrapper}>
-        <img className={c.image} src={imgUrl} alt={alt_description} />
+      <div className={style.imageWrapper}>
+        <img className={style.image} src={imgUrl} alt={alt_description} />
       </div>
-      <div className={c.thumbInfo}>
-        <div className={c.user}>
+      <div className={style.thumbInfo}>
+        <div className={style.user}>
           <img
-            className={c.avatar}
+            className={style.avatar}
             src={user?.profile_image.small}
             alt={alt_description ?? 'Unrecognized image'}
           />
           <span>@{user?.username}</span>
         </div>
-        <div className={c.likes}>
+        <div className={style.likes}>
           <IoMdHeartEmpty size={20} />
           <span>{likes}</span>
         </div>
