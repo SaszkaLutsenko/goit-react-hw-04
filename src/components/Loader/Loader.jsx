@@ -1,15 +1,12 @@
-import { Audio } from 'react-loader-spinner'
+import { InfinitySpin } from 'react-loader-spinner';
 const Loader = () => (
 
-  <Audio
-  height="80"
-  width="80"
-  radius="9"
-  color="green"
-  ariaLabel="loading"
-  wrapperStyle
-  wrapperClass
-/>
+  <InfinitySpin
+    visible={true}
+    width="200"
+    color="	#C0C0C0"
+    ariaLabel="infinity-spin-loading"
+    />
   
 );
 
