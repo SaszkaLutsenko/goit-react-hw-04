@@ -13,19 +13,24 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     border: 'none',
-    padding: 25,
+    padding: 32,
   },
 };
 
-const ImageModal = ({modal: { user, likes, description, alt_description, imgUrl }, closeModal, modalIsOpen}) => {
+const ImageModal = ({
+  closeModal,
+  modalIsOpen,
+  modal: { user, likes, description, alt_description, imgUrl },
+}) => {
   return (
-    <Modal className={style.modal} isOpen={modalIsOpen} onRequestClose={closeModal} >
+    <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={customStyles}>
       <div className={style.wrapper}>
         <img className={style.image} src={imgUrl} alt={alt_description} />
       </div>
       <div className={style.thumb}>
         <div className={style.user}>
           <img
+            className={c.avatar}
             src={user?.profile_image.small}
             alt={alt_description ?? 'Unrecognized image'}
           />
@@ -44,3 +49,4 @@ const ImageModal = ({modal: { user, likes, description, alt_description, imgUrl 
 };
 
 export default ImageModal;
+

@@ -12,11 +12,12 @@
 .form input {
   width: 100%;
   border-radius: 15px;
-  border: 1px solid grey;
+  border: 3px solid grey;
   height: 42px;
   padding-left: 12px;
   padding-right: 48px;
   font-size: 18px;
+  
 
 }
 .form button {

@@ -25,7 +25,6 @@ const SearchBar = ({ onSubmit }) => {
             <input
               name="searchQuery"
               type="text"
-              autoFocus
               autoComplete="off"
               placeholder="what do you want to see?"
             />
