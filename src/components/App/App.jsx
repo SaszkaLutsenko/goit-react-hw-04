@@ -1,120 +1,92 @@
-import css from './App.module.css';
-
 import { useState, useEffect } from 'react';
-
-import { fetchData } from '../../image-api';
+import { fetchImages } from '../../images-api';
 import ImageGallery from '../ImageGallery/ImageGallery';
-import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import SearchBar from '../SearchBar/SearchBar';
-import ErrorMessage from '../ErrorMasage/ErrorMasage';
+import Loader from '../Loader/Loader';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
 
-import toast, { Toaster } from 'react-hot-toast';
-import { MagnifyingGlass } from 'react-loader-spinner';
-
-export default function App() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [page, setPage] = useState(1);
+const App = () => {
+  const [query, setQuery] = useState('');
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalContent, setModalContent] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [page, setPage] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImageInfo, setSelectedImageInfo] = useState({});
 
   useEffect(() => {
-    if (searchQuery === '') {
-      return;
-    }
-
-    const getData = async () => {
+    const getImages = async () => {
       try {
-        setLoading(true);
-        setError(false);
+        setIsLoading(true);
+        const { results, total_pages } = await fetchImages({ query, page });
 
-        const data = await fetchData(searchQuery, page);
-
-        if (data.total_pages === 0) {
-          return toast.error('No results!');
+        if (!results.length) {
+          setIsEmpty(true);
+          return;
         }
 
-        setImages(previousImages => [...previousImages, ...data.results]);
+        setImages(prev => [...prev, ...results]);
+        setIsVisible(page < total_pages);
       } catch (error) {
-        setError(true);
-        toast.error('Error! Please reload the page.');
+        setIsError(true);
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
+    getImages();
+  }, [query, page]);
 
-    getData();
-  }, [searchQuery, page]);
-
-  const endOfResults = Math.ceil(images.total_pages / 10); // per_page: 10
-  const numberOfCards = images.length > 0;
-
-  const handleSubmit = query => {
-    if (query === searchQuery) {
-      return toast.error('You wrote the same! 📝');
-    }
-
-    setPage(1);
+  const handleSearch = value => {
+    if (value === query) return;
     setImages([]);
-    setSearchQuery(query);
+    setIsError(false);
+    setQuery(value);
+    setPage(1);
+    setIsEmpty(false);
+    setIsVisible(false);
   };
 
   const handleLoadMore = () => {
-    if (page >= endOfResults) {
-      return toast.error(
-        'Sorry, but you have reached the end of search results!'
-      );
-    }
-    setPage(page + 1);
+    setPage(prevPage => prevPage + 1);
   };
 
-  const openModal = value => {
-    setModalContent(value);
-    setModalIsOpen(true);
+  const openModal = values => {
+    setSelectedImageInfo(values);
+    setShowModal(true);
   };
 
   const closeModal = () => {
-    setModalIsOpen(false);
+    setShowModal(false);
+    setSelectedImageInfo({});
   };
 
   return (
-    <div className={css.container}>
-      <SearchBar query={searchQuery} onSearch={handleSubmit} />
+    <div>
+      <SearchBar onSubmit={handleSearch} />
 
-      {error && (
-        <ErrorMessage>
-          Something went wrong! Please reload the page 🚩
-        </ErrorMessage>
+      {isError && (
+        <ErrorMessage>Whoops, something went wrong! Please try reloading this page!</ErrorMessage>
       )}
 
-      {numberOfCards && (
-        <ImageGallery images={images} onOpenModal={openModal} />
-      )}
-      {numberOfCards && !loading && <LoadMoreBtn onLoadMore={handleLoadMore} />}
+      {images.length !== 0 && <ImageGallery images={images} openModal={openModal} />}
 
-      {loading && (
-        <div className={css.loader}>
-          <MagnifyingGlass
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="magnifying-glass-loading"
-            wrapperStyle={{}}
-            wrapperClass="magnifying-glass-wrapper"
-            glassColor="#c0efff"
-            color="#000"
-          />
-        </div>
+      {isEmpty && query && <ErrorMessage>Sorry. There are no images ... 😭</ErrorMessage>}
+
+      {isVisible && (
+        <LoadMoreBtn disabled={isLoading} onClick={handleLoadMore}>
+          {isLoading ? 'Loading' : 'Load more'}
+        </LoadMoreBtn>
       )}
-      <ImageModal
-        value={modalContent}
-        modalIsOpen={modalIsOpen}
-        onCloseModal={closeModal}
-      />
-      <Toaster position="top-center" reverseOrder={false} />
+
+      {isLoading && <Loader />}
+
+      <ImageModal closeModal={closeModal} modalIsOpen={showModal} modal={selectedImageInfo} />
     </div>
   );
-}
+};
+
+export default App;
