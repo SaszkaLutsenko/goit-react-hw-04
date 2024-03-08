@@ -1,13 +1,15 @@
-.loadBtn {
+.btn {
   display: block;
   margin: 0 auto;
   width: 120px;
   height: 42px;
-  border-radius: 20px;
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
-  transition: transform var(--td) var(--ttf);
+  border-radius: 10px;
+  background-color: lightgray;
+  border: 1px solid grey;
 }
-
-.loadBtn:hover {
-  transform: translateY(-10%);
+.btn:focus{
+  transform: scale(1.1);
+}
+.btn:hover {
+  transform: scale(1.2);
 }
