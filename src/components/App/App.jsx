@@ -22,6 +22,7 @@ const App = () => {
   useEffect(() => {
     const getImages = async () => {
       try {
+        if (!query.trim()) return;
         setIsLoading(true);
         const { results, total_pages } = await fetchImages({ query, page });
         if (!results.length) {
