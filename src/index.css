@@ -1,55 +1,55 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+:root {
+  font-family: 'Roboto Slab', serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #111;
+  background-color: #d7d7d7;
+
+  --white: #fff;
+  --black: #000;
+
+  --td: 250ms;
+  --ttf: ease;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid #a5a5a5;
-  padding: 0.6em 1.2em;
-  font-size: 0.8em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
+  padding: 0;
 }
 
 ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
+  list-style: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin: 0;
+button {
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
 }
 
-input {
-  outline: 0;
-  border: 1px solid rgb(131, 131, 131);
-  border-radius: 8px;
-  width: 300px;
-  height: 24px;
-  padding: 10px;
-  transition: border-color 0.25s;
-  font-size: 16px;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-input:hover,
-input:focus {
-  border-color: #646cff;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#root {
+  margin: 0 auto;
+  padding: 4rem;
+  text-align: center;
 }

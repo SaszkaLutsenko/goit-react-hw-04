@@ -1,39 +1,41 @@
-import css from './SearchBar.module.css';
+import { IoSearchOutline } from 'react-icons/io5';
+import toast, { Toaster } from 'react-hot-toast';
+import c from './SearchBar.module.css';
 
-import { Field, Form, Formik } from 'formik';
-import { IoSearch } from 'react-icons/io5';
-import toast from 'react-hot-toast';
+const SearchBar = ({ onSubmit }) => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    const searchQuery = e.target.elements.searchQuery.value;
 
-export default function SearchBar({ onSearch }) {
+    if (!searchQuery.trim()) {
+      toast('Type something to search', { duration: 2000, position: 'top-right' });
+      return;
+    }
+
+    onSubmit(searchQuery);
+  };
+
   return (
-    <header className={css.header}>
-      <Formik
-        initialValues={{ searchQuery: '' }}
-        onSubmit={(values, actions) => {
-          if (values.searchQuery.trim() === '') {
-            return toast.error('You need to enter text to find pictures 🔍');
-          }
-
-          onSearch(values.searchQuery);
-          actions.resetForm();
-        }}
-      >
-        <Form>
+    <header className={c.header}>
+      <form onSubmit={handleSubmit} className={c.form}>
+        <div className={c.searchBox}>
+          <button type="submit">
+            <IoSearchOutline size={24} />
+          </button>
           <label>
-            <Field
-              className={css.input}
-              type="text"
+            <input
               name="searchQuery"
-              autoComplete="off"
+              type="text"
               autoFocus
+              autoComplete="off"
               placeholder="Search images and photos"
             />
-            <button className={css.button} type="submit">
-              <IoSearch />
-            </button>
           </label>
-        </Form>
-      </Formik>
+        </div>
+      </form>
+      <Toaster />
     </header>
   );
-}
+};
+
+export default SearchBar;
