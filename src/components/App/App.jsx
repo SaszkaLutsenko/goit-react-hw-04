@@ -37,7 +37,56 @@ const App = () => {
       }
     };
     getImages();
+  }, [query, page]);
 
-  })
-}
+  const handelSearch = value => {
+    if(value === query) return;
+    setImages([]);
+    setIsError(false);
+    setQuery(value);
+    setPage(1);
+    setIsEmpty(false);
+    setIsVisible(false);
+  };
+
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
+  };
+
+  const openModal = () => {
+    setSelectedImageInfo(value);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setSelectedImageInfo({});
+    setShowModal(false);
+  };
+
+  return (
+    <div>
+      <SearchBar onSubmit={handleSearch} />
+
+      {isError && (
+        <ErrorMasage>Whoops, something went wrong! Please try reloading this page!</ErrorMasage>
+      )}
+
+      {images.length !== 0 && <ImageGallery images={images} openModal={openModal} />}
+
+      {isEmpty && query && <ErrorMasage>There are no images</ErrorMasage>}
+
+      {isVisible && (
+        <LoadMoreButton disabled={isLoading} onClick={handleLoadMore}>
+          {isLoading ? "Loading" : "Load more"}
+        </LoadMoreButton>
+      )}
+
+      {isLoading && <Loader />}
+
+      <ImageModal closeModal={closeModal} modalIsOpen={showModal} modal={selectedImageInfo} />
+    </div>
+  );
+};
+
+export default App;
 
