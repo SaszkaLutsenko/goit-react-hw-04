@@ -6,6 +6,7 @@ import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMasage/ErrorMasage';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
+import style from './App.module.css';
 
 const App = () => {
   const [query, setQuery] = useState('');
@@ -69,12 +70,12 @@ const App = () => {
       <SearchBar onSubmit={handleSearch} />
 
       {isError && (
-        <ErrorMessage>Whoops, something went wrong! Please try reloading this page!</ErrorMessage>
+        <ErrorMessage>Try reloading the page</ErrorMessage>
       )}
 
       {images.length !== 0 && <ImageGallery images={images} openModal={openModal} />}
 
-      {isEmpty && query && <ErrorMessage>Sorry. There are no images ... 😭</ErrorMessage>}
+      {isEmpty && query && <ErrorMessage>I don't understand the request</ErrorMessage>}
 
       {isVisible && (
         <LoadMoreBtn disabled={isLoading} onClick={handleLoadMore}>
