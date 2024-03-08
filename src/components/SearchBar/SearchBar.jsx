@@ -1,6 +1,7 @@
-import { IoSearchOutline } from 'react-icons/io5';
+
+import { MdImageSearch } from "react-icons/md";
 import toast, { Toaster } from 'react-hot-toast';
-import c from './SearchBar.module.css';
+import style from './SearchBar.module.css';
 
 const SearchBar = ({ onSubmit }) => {
   const handleSubmit = e => {
@@ -8,7 +9,7 @@ const SearchBar = ({ onSubmit }) => {
     const searchQuery = e.target.elements.searchQuery.value;
 
     if (!searchQuery.trim()) {
-      toast('Type something to search', { duration: 2000, position: 'top-right' });
+      toast('Enter the query in the input field', { duration: 2500, position: 'top-center' });
       return;
     }
 
@@ -16,12 +17,10 @@ const SearchBar = ({ onSubmit }) => {
   };
 
   return (
-    <header className={c.header}>
-      <form onSubmit={handleSubmit} className={c.form}>
-        <div className={c.searchBox}>
-          <button type="submit">
-            <IoSearchOutline size={24} />
-          </button>
+    <header className={style.header}>
+      <form onSubmit={handleSubmit} className={style.form}>
+        <div className={style.searchBox}>
+          <button type="submit"><MdImageSearch size={20} /></button>
           <label>
             <input
               name="searchQuery"
