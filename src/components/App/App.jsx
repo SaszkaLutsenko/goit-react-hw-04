@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchImages } from "../..images-api";
+import { fetchImages } from "../../images-api";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import SearchBar from "../SearchBar/SearchBar";
 import Loader from "../Loader/Loader";

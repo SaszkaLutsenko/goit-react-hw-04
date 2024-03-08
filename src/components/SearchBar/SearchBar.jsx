@@ -1,4 +1,4 @@
-import { IoSearchOutline } from "react-icon/io5";
+import { IoSearchOutline } from "react-icons/io5";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "./SearchBar.module.css";
 

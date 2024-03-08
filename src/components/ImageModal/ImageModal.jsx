@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import { IoMdHeartEmpty } from "react-icon/io";
+import { IoMdHeartEmpty } from "react-icons/io";
 import styles from "./ImageModal.module.css";
 
 Modal.setAppElement("#root");
